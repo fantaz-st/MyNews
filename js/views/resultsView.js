@@ -16,7 +16,7 @@ class ResultsView extends View {
         <i class="far fa-heart favorites_btn"></i>
                     <a href="${cur.url}"class="article-a">
             
-                        <img class="banner-small" src="${cur.urlToImage === null ? `/placeholder.jpg` : cur.urlToImage}">
+                        <img class="banner-small" src="${cur.urlToImage === null ? `..img/placeholder.jpg` : cur.urlToImage}">
                             <div class="inner">
                                 <p class="category">${this._data.query}</p>
                                 <p class="title">${cur.title}</p>
