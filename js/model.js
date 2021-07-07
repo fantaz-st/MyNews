@@ -21,9 +21,7 @@ export const state = {
 
 export const getArticles = async function (pageSize = '20', page = '1', category = 'general') {
   try {
-    const data = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${API_KEY}`
-    );
+    const data = await fetch(`https://newsapi.org/v2/top-headlines?category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${API_KEY}`);
     const json = await data.json();
     populateArticles(json, category);
   } catch (err) {
@@ -35,9 +33,7 @@ export const getMoreLatestArticles = async function () {
     //get current page
     const loadPage = state.page + 1;
     //fetch articles
-    const data = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=general&pageSize=20&page=${loadPage}&apiKey=${API_KEY}`
-    );
+    const data = await fetch(`https://newsapi.org/v2/top-headlines?category=general&pageSize=20&page=${loadPage}&apiKey=${API_KEY}`);
     const json = await data.json();
     //check if there's more retrieved articles than the ones already rendered
     if (json.totalResults > state.articlesRendered) {
@@ -77,7 +73,7 @@ const populateSearch = function (data, query) {
 
 export const getArticleByCategories = async function (category) {
   try {
-    const data = await fetch(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/sources?category=${category}&apiKey=${API_KEY}`);
+    const data = await fetch(`https://newsapi.org/v2/sources?category=${category}&apiKey=${API_KEY}`);
     const json = await data.json();
     populateSearch(json, query);
   } catch (err) {
@@ -90,9 +86,7 @@ export const getArticleByCategories = async function (category) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&from=2021-07-01&sortBy=popularity&apiKey=${API_KEY}`
-    );
+    const data = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2021-07-01&sortBy=popularity&apiKey=${API_KEY}`);
     const json = await data.json();
     populateSearch(json, query);
     console.log(json);
@@ -104,9 +98,7 @@ export const loadSearchResults = async function (query) {
 export const loadCategoryResults = async function (category) {
   try {
     state.search.query = category;
-    const data = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
-    );
+    const data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`);
     const json = await data.json();
     populateSearch(json, category);
   } catch (err) {
