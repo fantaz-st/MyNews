@@ -21,7 +21,9 @@ export const state = {
 
 export const getArticles = async function (pageSize = '20', page = '1', category = 'general') {
   try {
-    const data = await fetch(`https://newsapi.org/v2/top-headlines?category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${API_KEY}`);
+    const data = await fetch(
+      `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${API_KEY}`
+    );
     const json = await data.json();
     populateArticles(json, category);
   } catch (err) {
